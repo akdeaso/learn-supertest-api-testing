@@ -6,7 +6,7 @@ import { allCartsSchema, singleCartsSchema } from "../schemas/carts.js";
 use(chaiJsonSchema);
 
 describe("GET /carts", () => {
-  it.only("Should return all carts", async () => {
+  it("Should return all carts", async () => {
     try {
       const res = await api.get("/carts").expect(200);
       expect(res.body).to.be.jsonSchema(allCartsSchema);
@@ -14,7 +14,7 @@ describe("GET /carts", () => {
       console.log(err);
     }
   });
-  it.only("Should return single cart", async () => {
+  it("Should return single cart", async () => {
     try {
       const res = await api.get("/carts/7").expect(200);
       expect(res.body).to.be.jsonSchema(singleCartsSchema);
@@ -22,7 +22,7 @@ describe("GET /carts", () => {
       console.log(err);
     }
   });
-  it.only("Should return carts of user", async () => {
+  it("Should return carts of user", async () => {
     try {
       const res = await api.get("/carts/user/5").expect(200);
       expect(res.body).to.be.jsonSchema(allCartsSchema);
@@ -33,7 +33,7 @@ describe("GET /carts", () => {
 });
 
 describe("POST /carts", () => {
-  it.only("Should add new cart", async () => {
+  it("Should add new cart", async () => {
     try {
       const reqBody = {
         userId: 1,
@@ -49,7 +49,36 @@ describe("POST /carts", () => {
         ],
       };
       const res = await api.post("/carts/add").send(reqBody).expect(200);
-      console.log(res.body);
+      expect(res.body).to.be.jsonSchema(singleCartsSchema);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+});
+
+describe("PUT /carts", () => {
+  it("Should update cart", async () => {
+    try {
+      const reqBody = {
+        products: [
+          {
+            id: 7,
+            quantity: 3,
+          },
+        ],
+      };
+      const res = await api.put("/carts/9").send(reqBody).expect(200);
+      expect(res.body).to.be.jsonSchema(singleCartsSchema);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+});
+
+describe("DELETE /carts", () => {
+  it("Should delete cart", async () => {
+    try {
+      const res = await api.delete("/carts/10").expect(200);
       expect(res.body).to.be.jsonSchema(singleCartsSchema);
     } catch (err) {
       console.log(err);
