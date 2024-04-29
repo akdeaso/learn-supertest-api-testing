@@ -1,6 +1,6 @@
 import { use, expect } from "chai";
-import supertest from "supertest";
 import chaiJsonSchema from "chai-json-schema-ajv";
+import { api } from "../config.js";
 import {
   allRecipesSchema,
   limitSkipSchema,
@@ -8,7 +8,6 @@ import {
 } from "../schemas/recipes.js";
 
 use(chaiJsonSchema);
-const api = supertest("https://dummyjson.com");
 
 describe("GET /recipes", () => {
   it("Should return all recipes", async () => {
