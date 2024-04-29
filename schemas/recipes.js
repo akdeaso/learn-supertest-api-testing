@@ -121,4 +121,25 @@ const singleRecipesSchema = {
   ],
 };
 
-export { allRecipesSchema, singleRecipesSchema };
+const limitSkipSchema = {
+  type: "object",
+  properties: {
+    recipes: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "number" },
+          name: { type: "string" },
+          image: { type: "string" },
+        },
+        required: ["id", "name", "image"],
+      },
+    },
+    total: { type: "number" },
+    skip: { type: "number" },
+    limit: { type: "number" },
+  },
+};
+
+export { allRecipesSchema, singleRecipesSchema, limitSkipSchema };
