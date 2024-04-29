@@ -1,7 +1,11 @@
 import { use, expect } from "chai";
 import chaiJsonSchema from "chai-json-schema-ajv";
 import { api } from "../config.js";
-import { allCartsSchema, singleCartsSchema } from "../schemas/carts.js";
+import {
+  allCartsSchema,
+  deleteCartSchema,
+  singleCartsSchema,
+} from "../schemas/carts.js";
 
 use(chaiJsonSchema);
 
@@ -79,7 +83,7 @@ describe("DELETE /carts", () => {
   it("Should delete cart", async () => {
     try {
       const res = await api.delete("/carts/10").expect(200);
-      expect(res.body).to.be.jsonSchema(singleCartsSchema);
+      expect(res.body).to.be.jsonSchema(deleteCartSchema);
     } catch (err) {
       console.log(err);
     }
