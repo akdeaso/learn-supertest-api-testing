@@ -58,6 +58,9 @@ const allRecipesSchema = {
         ],
       },
     },
+    total: { type: "number" },
+    skip: { type: "number" },
+    limit: { type: "number" },
   },
 };
 
