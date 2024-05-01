@@ -9,7 +9,7 @@ import {
 
 use(chaiJsonSchema);
 
-describe("GET /carts", () => {
+describe("Test cases for carts endpoint", () => {
   it("Should return all carts", async () => {
     try {
       const res = await api.get("/carts").expect(200);
@@ -34,9 +34,6 @@ describe("GET /carts", () => {
       console.log(err);
     }
   });
-});
-
-describe("POST /carts", () => {
   it("Should add new cart", async () => {
     try {
       const reqBody = {
@@ -58,9 +55,6 @@ describe("POST /carts", () => {
       console.log(err);
     }
   });
-});
-
-describe("PUT /carts", () => {
   it("Should update cart", async () => {
     try {
       const reqBody = {
@@ -77,9 +71,6 @@ describe("PUT /carts", () => {
       console.log(err);
     }
   });
-});
-
-describe("DELETE /carts", () => {
   it("Should delete cart", async () => {
     try {
       const res = await api.delete("/carts/10").expect(200);

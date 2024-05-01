@@ -9,7 +9,7 @@ import {
 
 use(chaiJsonSchema);
 
-describe("GET /recipes", () => {
+describe("Test cases for recipes endpoint", () => {
   it("Should return all recipes", async () => {
     try {
       const res = await api.get("/recipes").expect(200);
